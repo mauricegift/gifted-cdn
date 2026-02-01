@@ -175,7 +175,7 @@ Update environment variables:
 For questions about changes or upgrades:
 - Email: support@giftedtech.co.ke
 - GitHub Issues: https://github.com/GiftedTech-Nexus/gifted-cdn/issues
-- Documentation: https://cdn.giftedtech.web.id/docs
+- Documentation: https://cdn.giftedtech.co.ke/docs
 
 ---
 

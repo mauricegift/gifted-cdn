@@ -130,11 +130,112 @@ AUDIO_MIMETYPES=['audio/mp3', 'audio/mpeg', 'audio/wav']
 DOC_MIMETYPES=['application/pdf', 'application/msword', 'text/plain']
 ```
 
+### 🔑 How to Obtain Cloudflare Credentials
+
+#### Cloudflare R2 Setup
+
+1. **Create a Cloudflare Account**
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+   - Sign up or log in to your account
+
+2. **Create an R2 Bucket**
+   - Navigate to **R2** in the left sidebar
+   - Click **Create bucket**
+   - Enter a bucket name (e.g., `files`)
+   - Click **Create bucket**
+
+3. **Get R2 API Credentials**
+   - In the R2 dashboard, click **Manage R2 API Tokens**
+   - Click **Create API token**
+   - Give it a name (e.g., `CDN Access`)
+   - Set permissions to **Admin Read & Write**
+   - Click **Create API token**
+   - **Save these credentials immediately** (they won't be shown again):
+     - `Access Key ID` → Use for `CF_ACCESS_KEY_ID`
+     - `Secret Access Key` → Use for `CF_SECRET_ACCESS_KEY`
+
+4. **Get R2 API Endpoint**
+   - Go back to your R2 bucket
+   - Click on **Settings**
+   - Find the **S3 API** section
+   - Copy the endpoint URL (format: `https://[account-id].r2.cloudflarestorage.com`)
+   - Use this for `CF_BUCKET_API_ENDPOINT`
+
+5. **Configure Public Access (Optional but Recommended)**
+   - In your bucket settings, go to **Settings** → **Public Access**
+   - Enable **Allow Access** to make files publicly accessible
+   - Set up a custom domain or use the default R2.dev domain
+   - Use this domain for `CF_BUCKET_DOMAIN` (e.g., `files.giftedtech.co.ke`)
+
+#### Cloudflare Turnstile Setup
+
+Cloudflare Turnstile is a free CAPTCHA alternative that protects your upload endpoint from bots.
+
+1. **Access Turnstile Dashboard**
+   - Go to [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile)
+   - Or navigate to **Turnstile** in your Cloudflare dashboard
+
+2. **Create a New Site**
+   - Click **Add site**
+   - Enter your domain (e.g., `cdn.giftedtech.co.ke`)
+   - Choose widget mode:
+     - **Managed** (Recommended): Automatically adapts challenge difficulty
+     - **Non-Interactive**: Invisible challenge
+     - **Invisible**: No user interaction
+   - Click **Create**
+
+3. **Get Your Credentials**
+   - After creation, you'll see:
+     - **Site Key** → Add this to your frontend HTML (already configured in `public/index.html`)
+     - **Secret Key** → Use for `CF_TURNSTILE_SECRET_KEY` in `.env`
+
+4. **Configure Domain Settings**
+   - Add all domains where the widget will be used
+   - For development, you can add `localhost`
+
+#### MongoDB Setup
+
+1. **Local MongoDB**
+   ```bash
+   # Install MongoDB (Ubuntu/Debian)
+   sudo apt-get install mongodb
+   
+   # Start MongoDB service
+   sudo systemctl start mongodb
+   
+   # Use local connection string
+   MONGO_URI=mongodb://localhost:27017/gifted-cdn
+   ```
+
+2. **MongoDB Atlas (Cloud)**
+   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Create a free account and cluster
+   - Click **Connect** → **Connect your application**
+   - Copy the connection string
+   - Replace `<password>` with your database user password
+   - Use this for `MONGO_URI`
+
+#### Telegram Bot Setup (Optional)
+
+Only needed if you want to receive contact form submissions via Telegram.
+
+1. **Create a Bot**
+   - Open Telegram and search for [@BotFather](https://t.me/botfather)
+   - Send `/newbot` command
+   - Follow the prompts to create your bot
+   - Save the **Bot Token** → Use for `BOT_TOKEN`
+
+2. **Get Your Chat ID**
+   - Send a message to your bot
+   - Visit: `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
+   - Find `"chat":{"id":` in the response
+   - Copy the chat ID → Use for `CHAT_ID`
+
 ## 📚 API Documentation
 
 ### Base URL
 ```
-https://cdn.giftedtech.web.id
+https://cdn.giftedtech.co.ke
 ```
 
 ### Endpoints
@@ -157,7 +258,7 @@ https://cdn.giftedtech.web.id
 {
   "name": "6Jexample_image.jpg",
   "path": "image/6Jexample_image.jpg",
-  "url": "https://cdn.giftedtech.web.id/image/6Jexample_image.jpg",
+  "url": "https://cdn.giftedtech.co.ke/image/6Jexample_image.jpg",
   "size": "245 kB",
   "mimetype": "image/jpeg",
   "storageClass": "Standard",
@@ -196,7 +297,7 @@ https://cdn.giftedtech.web.id
 {
   "name": "6Jexample_image.jpg",
   "path": "image/6Jexample_image.jpg",
-  "url": "https://cdn.giftedtech.web.id/image/6Jexample_image.jpg",
+  "url": "https://cdn.giftedtech.co.ke/image/6Jexample_image.jpg",
   "size": "245 kB",
   "mimetype": "image/jpeg",
   "deleted": true,
@@ -283,7 +384,7 @@ const uploadFile = async (filePath, deleteKey) => {
 
   try {
     const response = await axios.post(
-      'https://cdn.giftedtech.web.id/api/upload.php',
+      'https://cdn.giftedtech.co.ke/api/upload.php',
       form,
       { headers: form.getHeaders() }
     );
@@ -299,7 +400,7 @@ const uploadFile = async (filePath, deleteKey) => {
 const deleteFile = async (fileName, deleteKey) => {
   try {
     const response = await axios.delete(
-      'https://cdn.giftedtech.web.id/api/delete.php',
+      'https://cdn.giftedtech.co.ke/api/delete.php',
       { data: { fileName, deleteKey } }
     );
     console.log('Delete successful:', response.data);
@@ -322,7 +423,7 @@ import requests
 
 # Upload file
 def upload_file(file_path, delete_key=None):
-    url = 'https://cdn.giftedtech.web.id/api/upload.php'
+    url = 'https://cdn.giftedtech.co.ke/api/upload.php'
     
     with open(file_path, 'rb') as f:
         files = {'file': f}
@@ -338,7 +439,7 @@ def upload_file(file_path, delete_key=None):
 
 # Delete file
 def delete_file(file_name, delete_key):
-    url = 'https://cdn.giftedtech.web.id/api/delete.php'
+    url = 'https://cdn.giftedtech.co.ke/api/delete.php'
     data = {
         'fileName': file_name,
         'deleteKey': delete_key
@@ -361,12 +462,12 @@ print('File URL:', result['url'])
 
 ```bash
 # Upload file
-curl -X POST https://cdn.giftedtech.web.id/api/upload.php \
+curl -X POST https://cdn.giftedtech.co.ke/api/upload.php \
   -F "file=@example.jpg" \
   -F "deleteKey=my_secret_key_123"
 
 # Delete file
-curl -X DELETE https://cdn.giftedtech.web.id/api/delete.php \
+curl -X DELETE https://cdn.giftedtech.co.ke/api/delete.php \
   -H "Content-Type: application/json" \
   -d '{"fileName":"6Jexample.jpg","deleteKey":"my_secret_key_123"}'
 ```
@@ -425,7 +526,7 @@ PORT=5000
 ```nginx
 server {
     listen 80;
-    server_name cdn.giftedtech.web.id;
+    server_name cdn.giftedtech.co.ke;
 
     location / {
         proxy_pass http://localhost:5000;
@@ -499,8 +600,8 @@ For support, email support@giftedtech.co.ke or open an issue on GitHub.
 
 ## 🔗 Links
 
-- [Live Demo](https://cdn.giftedtech.web.id)
-- [API Documentation](https://cdn.giftedtech.web.id/docs)
+- [Live Demo](https://cdn.giftedtech.co.ke)
+- [API Documentation](https://cdn.giftedtech.co.ke/docs)
 - [GitHub Repository](https://github.com/GiftedTech-Nexus/gifted-cdn)
 
 ---

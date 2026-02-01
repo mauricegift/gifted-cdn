@@ -346,7 +346,7 @@ Create `/etc/nginx/sites-available/gifted-cdn`:
 server {
     listen 80;
     listen [::]:80;
-    server_name cdn.giftedtech.web.id;
+    server_name cdn.giftedtech.co.ke;
 
     # Redirect HTTP to HTTPS
     return 301 https://$server_name$request_uri;
@@ -355,11 +355,11 @@ server {
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
-    server_name cdn.giftedtech.web.id;
+    server_name cdn.giftedtech.co.ke;
 
     # SSL Configuration (Let's Encrypt)
-    ssl_certificate /etc/letsencrypt/live/cdn.giftedtech.web.id/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/cdn.giftedtech.web.id/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/cdn.giftedtech.co.ke/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/cdn.giftedtech.co.ke/privkey.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers on;
@@ -424,19 +424,19 @@ sudo a2enmod proxy proxy_http ssl rewrite headers
 Create `/etc/apache2/sites-available/gifted-cdn.conf`:
 ```apache
 <VirtualHost *:80>
-    ServerName cdn.giftedtech.web.id
+    ServerName cdn.giftedtech.co.ke
     
     # Redirect to HTTPS
-    Redirect permanent / https://cdn.giftedtech.web.id/
+    Redirect permanent / https://cdn.giftedtech.co.ke/
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName cdn.giftedtech.web.id
+    ServerName cdn.giftedtech.co.ke
 
     # SSL Configuration
     SSLEngine on
-    SSLCertificateFile /etc/letsencrypt/live/cdn.giftedtech.web.id/fullchain.pem
-    SSLCertificateKeyFile /etc/letsencrypt/live/cdn.giftedtech.web.id/privkey.pem
+    SSLCertificateFile /etc/letsencrypt/live/cdn.giftedtech.co.ke/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/cdn.giftedtech.co.ke/privkey.pem
 
     # Security headers
     Header always set X-Frame-Options "SAMEORIGIN"
@@ -487,10 +487,10 @@ sudo apt install certbot python3-certbot-apache
 #### 2. Obtain SSL certificate
 ```bash
 # For Nginx
-sudo certbot --nginx -d cdn.giftedtech.web.id
+sudo certbot --nginx -d cdn.giftedtech.co.ke
 
 # For Apache
-sudo certbot --apache -d cdn.giftedtech.web.id
+sudo certbot --apache -d cdn.giftedtech.co.ke
 ```
 
 #### 3. Auto-renewal

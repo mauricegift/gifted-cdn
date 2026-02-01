@@ -7,7 +7,7 @@ The Gifted CDN API provides RESTful endpoints for file management operations inc
 ## Base URL
 
 ```
-https://cdn.giftedtech.web.id
+https://cdn.giftedtech.co.ke
 ```
 
 ## Authentication
@@ -44,7 +44,7 @@ Turnstile-Token: <turnstile_response_token> (optional for /api/upload.php)
 {
   "name": "6Jexample_image.jpg",
   "path": "image/6Jexample_image.jpg",
-  "url": "https://cdn.giftedtech.web.id/image/6Jexample_image.jpg",
+  "url": "https://cdn.giftedtech.co.ke/image/6Jexample_image.jpg",
   "size": "245 kB",
   "mimetype": "image/jpeg",
   "storageClass": "Standard",
@@ -129,7 +129,7 @@ Content-Type: application/json
 {
   "name": "6Jexample_image.jpg",
   "path": "image/6Jexample_image.jpg",
-  "url": "https://cdn.giftedtech.web.id/image/6Jexample_image.jpg",
+  "url": "https://cdn.giftedtech.co.ke/image/6Jexample_image.jpg",
   "size": "245 kB",
   "mimetype": "image/jpeg",
   "storageClass": "Standard",
@@ -237,7 +237,7 @@ async function uploadFile(filePath, deleteKey) {
 
   try {
     const response = await axios.post(
-      'https://cdn.giftedtech.web.id/api/upload.php',
+      'https://cdn.giftedtech.co.ke/api/upload.php',
       form,
       {
         headers: form.getHeaders()
@@ -266,7 +266,7 @@ const axios = require('axios');
 async function deleteFile(fileName, deleteKey) {
   try {
     const response = await axios.delete(
-      'https://cdn.giftedtech.web.id/api/delete.php',
+      'https://cdn.giftedtech.co.ke/api/delete.php',
       {
         data: {
           fileName: fileName,
@@ -296,7 +296,7 @@ deleteFile('6Jexample_image.jpg', 'my_secret_key_123')
 import requests
 
 def upload_file(file_path, delete_key=None):
-    url = 'https://cdn.giftedtech.web.id/api/upload.php'
+    url = 'https://cdn.giftedtech.co.ke/api/upload.php'
     
     with open(file_path, 'rb') as f:
         files = {'file': f}
@@ -321,7 +321,7 @@ result = upload_file('example.jpg', 'my_secret_key_123')
 import requests
 
 def delete_file(file_name, delete_key):
-    url = 'https://cdn.giftedtech.web.id/api/delete.php'
+    url = 'https://cdn.giftedtech.co.ke/api/delete.php'
     data = {
         'fileName': file_name,
         'deleteKey': delete_key
@@ -348,7 +348,7 @@ delete_file('6Jexample_image.jpg', 'my_secret_key_123')
 #### Upload File
 ```php
 <?php
-$url = 'https://cdn.giftedtech.web.id/api/upload.php';
+$url = 'https://cdn.giftedtech.co.ke/api/upload.php';
 $file_path = 'example.jpg';
 $delete_key = 'my_secret_key_123';
 
@@ -383,7 +383,7 @@ if ($http_code == 200) {
 #### Delete File
 ```php
 <?php
-$url = 'https://cdn.giftedtech.web.id/api/delete.php';
+$url = 'https://cdn.giftedtech.co.ke/api/delete.php';
 $data = [
     'fileName' => '6Jexample_image.jpg',
     'deleteKey' => 'my_secret_key_123'
@@ -418,18 +418,18 @@ if ($http_code == 200) {
 #### Upload File
 ```bash
 # Upload with delete key
-curl -X POST https://cdn.giftedtech.web.id/api/upload.php \
+curl -X POST https://cdn.giftedtech.co.ke/api/upload.php \
   -F "file=@example.jpg" \
   -F "deleteKey=my_secret_key_123"
 
 # Upload without delete key (file cannot be deleted)
-curl -X POST https://cdn.giftedtech.web.id/api/upload.php \
+curl -X POST https://cdn.giftedtech.co.ke/api/upload.php \
   -F "file=@example.jpg"
 ```
 
 #### Delete File
 ```bash
-curl -X DELETE https://cdn.giftedtech.web.id/api/delete.php \
+curl -X DELETE https://cdn.giftedtech.co.ke/api/delete.php \
   -H "Content-Type: application/json" \
   -d '{"fileName":"6Jexample_image.jpg","deleteKey":"my_secret_key_123"}'
 ```
@@ -489,7 +489,7 @@ Some errors may include additional details:
 For API support or questions:
 - Email: support@giftedtech.co.ke
 - GitHub Issues: [https://github.com/GiftedTech-Nexus/gifted-cdn/issues](https://github.com/GiftedTech-Nexus/gifted-cdn/issues)
-- Documentation: [https://cdn.giftedtech.web.id/docs](https://cdn.giftedtech.web.id/docs)
+- Documentation: [https://cdn.giftedtech.co.ke/docs](https://cdn.giftedtech.co.ke/docs)
 
 ---
 
