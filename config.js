@@ -1,5 +1,36 @@
+/**
+ * Configuration Module
+ *
+ * Centralizes all application configuration from environment variables.
+ * Provides default values for optional settings.
+ *
+ * @module config
+ */
+
 require('dotenv').config();
 
+/**
+ * Application Configuration
+ *
+ * @type {Object}
+ * @property {string} port - Server port (default: 5000)
+ * @property {string} cfRegion - Cloudflare R2 region (default: "auto")
+ * @property {string} chatId - Telegram chat ID for contact form
+ * @property {string} cfBucketName - R2 bucket name
+ * @property {string} telegramApiUrl - Telegram API base URL
+ * @property {string} botToken - Telegram bot token
+ * @property {string} cfBucketDomain - Public domain for R2 bucket
+ * @property {string} cfTurnstileSecret - Cloudflare Turnstile secret key
+ * @property {string} cfAccessKeyId - R2 access key ID
+ * @property {string} cfTurnstileApiUrl - Turnstile API URL
+ * @property {string} cfApiEndpoint - R2 API endpoint
+ * @property {string} cfSecretAccessKey - R2 secret access key
+ * @property {string} mongoUri - MongoDB connection URI
+ * @property {string} imageMimetypes - JSON string of allowed image MIME types
+ * @property {string} audioMimetypes - JSON string of allowed audio MIME types
+ * @property {string} videoMimetypes - JSON string of allowed video MIME types
+ * @property {string} docMimetypes - JSON string of allowed document MIME types
+ */
 module.exports = {
 port: process.env.PORT || '5000',
 cfRegion: process.env.CF_REGION || "auto",

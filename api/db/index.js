@@ -1,7 +1,27 @@
+/**
+ * Database Connection Module
+ *
+ * This module handles MongoDB connection using Mongoose ODM.
+ * It establishes connection, handles errors, and manages connection lifecycle.
+ *
+ * @module api/db
+ */
+
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const config = require('../../config');
 
+/**
+ * Connect to MongoDB database
+ *
+ * Establishes connection to MongoDB using the URI from configuration.
+ * Sets up error handlers and connection event listeners.
+ *
+ * @async
+ * @function connectDB
+ * @returns {Promise<void>}
+ * @throws {Error} If connection fails, process exits with code 1
+ */
 const connectDB = async () => {
   try {
     mongoose.connect(config.mongoUri)
