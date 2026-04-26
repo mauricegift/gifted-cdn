@@ -249,11 +249,12 @@ Turnstile protects the public upload page from bots. It's free.
 
 1. Open Telegram → search **@BotFather** → start a chat → send `/newbot`.
 2. Follow the prompts (name + username). BotFather replies with a token — save it as `BOT_TOKEN`.
-3. **Get your Chat ID:**
-   - Send any message to your new bot first.
-   - Then visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates` in a browser.
-   - Find `"chat":{"id":123456789,...}` — that number is your `CHAT_ID`.
-   - For a **group chat**, add the bot to the group, send `/start`, then call the same URL — the chat ID will be a negative number (e.g. `-100123456789`).
+3. **Get your Chat ID — the easy way:**
+   - Open Telegram and search for **[@getmyid_bot](https://t.me/getmyid_bot)** (the *Get My ID Bot*).
+   - Hit **Start** — it instantly replies with your numeric Telegram user ID.
+   - Copy that number — it's your `CHAT_ID`.
+   - 📺 Full walkthrough (with screenshots): see [mauricegift/telegram-bot → bot-token-and-uid.md](https://github.com/mauricegift/telegram-bot/blob/main/gift/bot-token-and-uid.md).
+   - For a **group chat**, add your bot to the group, send `/start`, then visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates` — the group ID will be a negative number (e.g. `-100123456789`).
 
 ### 7️⃣ Create the `.env` File
 
@@ -385,7 +386,7 @@ Public endpoint — no CAPTCHA. Use it from scripts, bots, mobile apps.
 | `file` | multipart/form-data | ✅ | The file to upload (max 100 MB) |
 | `deleteKey` | string | ❌ | Optional. If set, you'll later need this same key to delete the file |
 
-**Rate limit:** 10 uploads per IP per 5 minutes.
+**Rate limit:** 10 uploads per IP per minute.
 
 #### cURL example
 
@@ -591,7 +592,7 @@ gifted-cdn/
 
 ## 🛡 Rate Limits & Security
 
-- **Upload rate limit:** 10 uploads / 5 min / IP (configurable in `api/index.js`).
+- **Upload rate limit:** 10 uploads / minute / IP (configurable in `api/index.js`).
 - **File size cap:** 100 MB (set in `multer` limits).
 - **MIME whitelist:** uploads outside the configured image/video/audio/doc lists are rejected with `400`.
 - **CAPTCHA:** the public web upload uses Cloudflare Turnstile so bots can't spam your bucket.
