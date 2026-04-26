@@ -7,7 +7,7 @@
   <meta property="og:title" content="Gifted File Cdn">
   <meta property="og:description" content="Upload & manage files quickly and easily with Gifted Cdn. Supports all file types.">
   <meta property="og:image" content="https://telegra.ph/file/c2a4d8d65722553da4c89.jpg">
-  <meta property="og:url" content="https://cdn.giftedtech.web.id/upload">
+  <meta property="og:url" content="https://cdn.giftedtech.co.ke/upload">
   <title>GIFTED CDN API Documentation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -176,8 +176,8 @@
           <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
             <h3 class="text-xl font-semibold mb-3 text-primary">Base URL</h3>
             <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative">
-              <span class="text-green-400">https://cdn.giftedtech.web.id</span>
-              <button class="copy-btn bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs" data-clipboard-text="https://cdn.giftedtech.web.id">
+              <span class="text-green-400">https://cdn.giftedtech.co.ke</span>
+              <button class="copy-btn bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs" data-clipboard-text="https://cdn.giftedtech.co.ke">
                 Copy
               </button>
             </div>
@@ -244,7 +244,7 @@
             <pre><code class="language-json">{
   "name": "6Jexample_image.jpg",
   "path": "image/6Jexample_image.jpg",
-  "url": "https://cdn.giftedtech.web.id/image/6Jexample_image.jpg",
+  "url": "https://cdn.giftedtech.co.ke/image/6Jexample_image.jpg",
   "size": "245KB",
   "mimetype": "image/jpeg",
   "storageClass": "Standard",
@@ -348,7 +348,7 @@ const form = new FormData();
 form.append('file', fs.createReadStream(filePath));
 if (deleteKey) form.append('deleteKey', deleteKey);
 
-axios.post('https://cdn.giftedtech.web.id/api/upload.php', form, {
+axios.post('https://cdn.giftedtech.co.ke/api/upload.php', form, {
   headers: form.getHeaders()
 })
 .then(response => {
@@ -368,7 +368,7 @@ axios.post('https://cdn.giftedtech.web.id/api/upload.php', form, {
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
             <pre><code class="language-python">import requests
 
-url = 'https://cdn.giftedtech.web.id/api/upload.php'
+url = 'https://cdn.giftedtech.co.ke/api/upload.php'
 file_path = 'example.jpg'
 delete_key = 'your_secret_key'  # Optional
 
@@ -391,7 +391,7 @@ else:
         <div id="php-upload" class="tab-content" data-tab-content="php">
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
             <pre><code class="language-php"><?php
-$url = 'https://cdn.giftedtech.web.id/api/upload.php';
+$url = 'https://cdn.giftedtech.co.ke/api/upload.php';
 $file_path = 'example.jpg';
 $delete_key = 'your_secret_key'; // Optional
 
@@ -428,7 +428,7 @@ if ($http_code == 200) {
         <!-- cURL Upload -->
         <div id="curl-upload" class="tab-content" data-tab-content="curl">
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
-            <pre><code class="language-bash">curl -X POST https://cdn.giftedtech.web.id/api/upload.php \
+            <pre><code class="language-bash">curl -X POST https://cdn.giftedtech.co.ke/api/upload.php \
   -F "file=@example.jpg" \
   -F "deleteKey=your_secret_key"  # Optional</code></pre>
             <button class="copy-btn bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs" data-clipboard-target="#curl-upload-code">
@@ -448,7 +448,7 @@ if ($http_code == 200) {
 const fileName = '6Jexample_image.jpg';
 const deleteKey = 'your_secret_key';
 
-axios.delete('https://cdn.giftedtech.web.id/api/delete.php', {
+axios.delete('https://cdn.giftedtech.co.ke/api/delete.php', {
   data: { fileName, deleteKey }
 })
 .then(response => {
@@ -468,7 +468,7 @@ axios.delete('https://cdn.giftedtech.web.id/api/delete.php', {
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
             <pre><code class="language-python">import requests
 
-url = 'https://cdn.giftedtech.web.id/api/delete.php'
+url = 'https://cdn.giftedtech.co.ke/api/delete.php'
 data = {
     'fileName': '6Jexample_image.jpg',
     'deleteKey': 'your_secret_key'
@@ -490,7 +490,7 @@ else:
         <div id="php-delete" class="tab-content" data-tab-content="php">
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
             <pre><code class="language-php"><?php
-$url = 'https://cdn.giftedtech.web.id/api/delete.php';
+$url = 'https://cdn.giftedtech.co.ke/api/delete.php';
 $data = [
     'fileName' => '6Jexample_image.jpg',
     'deleteKey' => 'your_secret_key'
@@ -522,7 +522,7 @@ if ($http_code == 200) {
         <!-- cURL Delete -->
         <div id="curl-delete" class="tab-content" data-tab-content="curl">
           <div class="code-block bg-gray-900 rounded p-4 font-mono text-sm relative mb-6">
-            <pre><code class="language-bash">curl -X DELETE https://cdn.giftedtech.web.id/api/delete.php \
+            <pre><code class="language-bash">curl -X DELETE https://cdn.giftedtech.co.ke/api/delete.php \
   -H "Content-Type: application/json" \
   -d '{"fileName": "6Jexample_image.jpg", "deleteKey": "your_secret_key"}'</code></pre>
             <button class="copy-btn bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs" data-clipboard-target="#curl-delete-code">
@@ -537,7 +537,7 @@ if ($http_code == 200) {
   <!-- Footer -->
   <footer class="bg-gray-800/80 backdrop-blur-md py-6 mt-12 border-t border-gray-700">
     <div class="container mx-auto px-4 text-center text-gray-400">
-      <p>&copy; <span id="current-year"></span> Gifted Tech. ❤</p>
+      <p>&copy; 2024 - <span id="current-year"></span> <a href="https://me.giftedtech.co.ke" class="text-green-500 hover:text-green-400 transition">Gifted Tech</a> ❤</p>
       <p class="mt-2 text-sm">API Version 1.2.6</p>
     </div>
   </footer>
